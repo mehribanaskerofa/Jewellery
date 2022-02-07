@@ -1,0 +1,37 @@
+﻿@model Jewellery.Models.Entity.Company
+@{
+    ViewBag.Title = "UpdateCompany";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 class="alert-info">UpdateCompany...</h2>
+
+
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+            <a class="btn btn-info" href="/Company/Index/">Back</a>
+            @using (Html.BeginForm("UpdateCompany", "Company", FormMethod.Post))
+            {
+                <div class="form-group ">
+                    <br />
+                    @Html.Label("Company Name")
+                    @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Email")
+                    @Html.TextAreaFor(x => x.CompanyEmail, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Phone")
+                    @Html.TextBoxFor(x => x.CompanyPhone, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-success">Edit</button>
+                </div>
+            }
+        </div>
+    </div>
+</main>

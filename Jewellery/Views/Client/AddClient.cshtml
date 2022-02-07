@@ -1,0 +1,36 @@
+﻿@model Jewellery.Models.Entity.Client
+@{
+    ViewBag.Title = "AddClient";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<h2 class="alert-info">AddClient</h2>
+
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+            <a class="btn btn-info" href="/Client/Index/">Back</a>
+            @using (Html.BeginForm("AddClient", "Client", FormMethod.Post))
+            {
+                <div class="form-group ">
+                    <br />
+                    @Html.Label("Client Name")
+                    @Html.TextBoxFor(x => x.CFullName, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Comment")
+                    @Html.TextAreaFor(x => x.CComment, new { @class = "form-control" })
+                    <br />
+                   
+                    <button class="btn btn-success">Add</button>
+                </div>
+            }
+        </div>
+    </div>
+</main>

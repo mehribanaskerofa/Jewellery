@@ -1,0 +1,230 @@
+﻿@model Jewellery.Models.Entity.Product
+@*@model List<Product>*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+            <h2>Products <small> -  @ViewBag.PSay  -</small></h2>
+
+            <ul class="responsive-table" id="m">
+                <li class="col col-2"><a class="btn btn-info"  href="/Product/AddProduct/" >Add</a> </li>
+                @foreach (var item in ViewBag.Products)
+                {
+            <li class="table-header" id="example1">
+
+                <div class="col col-1">@item.ID </div>
+               
+                <div class="col col-2">@item.PName</div>
+                <div class="col col-1">@item.Price</div>
+               
+                <div class="col col-4">@item.PContent</div>
+                <div class="col col-1">@item.PImg</div>
+                <div class="col col-1">@item.Status</div>
+              
+                <div class="col col-2 "><a class="btn btn-warning"  href="/Product/DeleteProduct/@item.ID" >Delete</a></div>
+                <div class="col col-2"><a class="btn btn-primary"  href="/Product/UpdateProduct/@item.ID">Update</a></div>
+
+
+
+                @* data-toggle="modal" data-target="#exampleUpdate" data-url="@Url.Action($"UpdateProduct/{item.ID}")" *@
+
+                @*<div class="col col-2 "><button type="button" class="btn btn-warning" onclick="Edit(@item.ID)">Update</button></div>*@
+
+            </li>
+
+                }
+            </ul>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+<input type="hidden" id="productID" />
+
+@*----------------modal------*@
+
+
+<div class="modal fade" id="exampleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  method="post" action="/Product/AddProduct/">
+                    <div class="form-group" >
+                        @Html.Label("product adı")
+                        @Html.TextBoxFor(x => x.PName, new { @class = "form-control" })
+
+                        <br />
+                        @Html.Label("content")
+                        @Html.TextBoxFor(x => x.PContent, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("sekil")
+                        @Html.TextBoxFor(x => x.PImg, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("pul")
+                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="Save">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="Close">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+            {
+            <div class="modal-body">
+                <form >
+                    <div class="form-group">
+
+                        @Html.HiddenFor(x => x.ID, new { @ID = "id", @class = "form-control" })
+
+                        @Html.Label("product adı")
+                        @Html.TextBoxFor(x => x.PName, new { @PName = "Pname", @class = "form-control" })
+
+                        <br />
+                        @Html.Label("content")
+                        @Html.TextBoxFor(x => x.PContent, new { @PContext = "Pcontent", @class = "form-control" })
+                       
+                        <br />
+                        @Html.Label("sekil")
+                        @Html.TextBoxFor(x => x.PImg, new { @PImg = "Pimg", @class = "form-control" })
+
+                        <br />
+                        @Html.Label("pul")
+                        @Html.TextBoxFor(x => x.Price, new { @Price = "Pprice", @class = "form-control" })
+                        <br />
+                        @Html.Label("status")
+                        @Html.TextBoxFor(x => x.Status, new { @Status = "Pstatus", @class = "form-control" })
+                        <br />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="Save">Update</button>
+                        @*<button id="close" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>*@
+                    </div>
+                </form>
+            </div>    
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/Product/DeleteProduct/3">
+                    <div class="form-group" id="Datas">
+                        <h3>Eminsiniz silinmeyine?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="Delete">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="Close">Close</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $("#close").click(function () {
+        $("#exampleUpdate").modal('hide');
+    });
+    
+
+    function Edit(id) {
+        var Url = '/Product/UpdateProduct?id=' + id;
+       
+        $("#exampleUpdate").modal('show');
+        
+        $.ajax({
+
+            url: Url,
+            type: 'get',
+            success: function (data) {
+                var obj = JSON.parse(data);
+               // $('#exampleUpdate').html(obj);
+                $("#id").val(obj.ID);
+                $("#Pname").val(obj.PName);
+                $("#Pcontent").val(obj.PContent);
+                $("#Pimg").val(obj.PImg);
+                $("#Pprice").val(obj.Price);
+                $("#Pstatus").val(obj.Status);
+               
+               
+            }
+           
+        });
+
+       
+    };
+
+   
+
+    $('#btn1').click(function () {
+        swal({
+            title: "M'lumatin silinm'yin' 'minsiniz?",
+            text: "M'lumat silinm'si!!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! deleted!", {
+                        icon: "success",
+                        url: '/Product/DeleteProduct?id=' + $("btn1").val() ,
+                    });
+                } else {
+                    swal("silinmedi!");
+                }
+            });
+    });
+</script>

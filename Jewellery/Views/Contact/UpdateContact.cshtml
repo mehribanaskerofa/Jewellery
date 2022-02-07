@@ -1,0 +1,40 @@
+﻿@model Jewellery.Models.Entity.Contact
+@{
+    ViewBag.Title = "UpdateContact";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+            <a class="btn btn-info" href="/Contact/Index/">Back</a>
+            @using (Html.BeginForm("UpdateContact", "Contact", FormMethod.Post))
+            {
+                <div class="form-group ">
+                    <br />
+                    @Html.Label("Contact Name")
+                    @Html.TextBoxFor(x => x.CName, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Email")
+                    @Html.TextAreaFor(x => x.CEmail, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Phone")
+                    @Html.TextBoxFor(x => x.CPhone, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Message")
+                    @Html.TextBoxFor(x => x.CMessage, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Status")
+                    @Html.TextBoxFor(x => x.CStatus, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-success">Update</button>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jewellery", "Jewellery\Jewellery.csproj", "{F702F224-2433-4B36-8331-4F7190A80754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F702F224-2433-4B36-8331-4F7190A80754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F702F224-2433-4B36-8331-4F7190A80754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F702F224-2433-4B36-8331-4F7190A80754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F702F224-2433-4B36-8331-4F7190A80754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2CC4ACF-07ED-498A-97D5-4E3967633168}
+	EndGlobalSection
+EndGlobal

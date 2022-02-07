@@ -1,0 +1,66 @@
+﻿@model Jewellery.Models.Entity.Product
+
+
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+
+
+            @using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+            {
+            <div class="form-group ">
+                <br />
+                @Html.Label("Product Name")
+                @Html.TextBoxFor(x => x.PName, new { @class = "form-control" })
+                <br />
+                @Html.Label("Content")
+                @Html.TextAreaFor(x => x.PContent, new { @class = "form-control" })
+                <br />
+                @Html.Label("Img")
+                @Html.TextBoxFor(x => x.PImg, new { @class = "form-control" })
+                <br />
+                @Html.Label("Price")
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                <br />
+                <button class="btn btn-success">Edit</button>
+            </div>
+            }
+            @*<form method="post" action="/Product/UpdateProduct/">
+                @foreach (var item in Model)
+                {
+                    <div class="form-group">
+                        <label for="example">Product Name</label>
+                        <input type="text" class="form-control" id="example" placeholder="@item.PName">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="example">Content</label>
+                        <textarea class="form-control" id="example" placeholder="@item.PContent" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="example">Image</label>
+                        <input type="text" class="form-control" id="example" placeholder="img">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="example">Price</label>
+                        <input type="text" class="form-control" id="example" placeholder="@item.Price">
+                    </div>
+                    <br />
+                    <button type="button" class="btn btn-primary">Update</button>
+                }
+            </form>*@
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,42 @@
+﻿@using Jewellery.Models.Entity
+@model List<Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<link href="~/fonts/Style.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.min.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+        <div class="container">
+            <h2>Contacts <small> -  @ViewBag.Say  -</small></h2>
+
+            <ul class="responsive-table" id="m">
+                <li class="col col-2"> <a class="btn btn-info" href="/Contact/AddContact/">Add</a></li>
+                @foreach (var item in Model)
+                {
+                    <li class="table-header" id="example1">
+                        <div class="col col-1">@item.ID </div>
+                        <div class="col col-2">@item.CName</div>
+                        <div class="col col-3">@item.CEmail</div>
+                        <div class="col col-2">@item.CPhone</div>
+                        <div class="col col-2">@item.CMessage</div>
+                        <div class="col col-1">@item.CStatus</div>
+
+                        <div class="col col-2 "><a class="btn btn-warning" href="/Contact/DeleteContact/@item.ID">Delete</a></div>
+                        <div class="col col-2"><a class="btn btn-primary" href="/Contact/UpdateContact/@item.ID">Update</a></div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</main>
+
